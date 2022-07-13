@@ -5,17 +5,19 @@
 
     <p>Price: {{ product.Price }}, Rating Avg: {{ product["Rating Avg"] }}</p>
     <p>Description: {{ product.Description }}</p>
+    <button>Add to Cart</button>
   </div>
 </template>
 
 <script>
-import products from "./products.json";
-
 export default {
   name: "ProductDetailsPage",
+  props: ["products"],
   computed: {
     product() {
-      return products.find((product) => product.ID == this.$route.params.id);
+      return this.products.find(
+        (product) => product.ID == this.$route.params.id
+      );
     },
   },
 };
@@ -25,9 +27,16 @@ export default {
 div {
   border: 1px solid gray;
   border-radius: 3px;
-  padding: 10px;
+  padding: 20px;
   margin: 5px;
-  width: 400px;
+  width: 500px;
+
   display: inline-block;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+button {
+  padding: 10px;
 }
 </style>
